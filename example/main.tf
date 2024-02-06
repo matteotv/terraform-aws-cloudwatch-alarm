@@ -8,11 +8,16 @@ module "matt-metric-alarm" {
     ECS_CLUSTER  = "example"
     ECS_SERVICES = "example"
   }
-  alarm_actions = {
+   alarm_actions = {
     default = {
-
-      alarm = ["arn:aws:sns:eu-west-:"]
-      ok    = ["arn:aws:sns:eu-west-:"]
+      alarm = {
+        critical = "arn:aws:sns:us-east-1:12345678901:critical"
+        info = "arn:aws:sns:us-east-1:12345678901:Test-info"
+      }
+      ok = {
+        critical = "arn:aws:sns:us-east-1:12345678901:Test-critical"
+        info = "arn:aws:sns:us-east-1:12345678901:Test-info"
+      }
     }
   }
 }
