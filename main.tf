@@ -41,7 +41,8 @@ module "metric-alarm" {
         period      = try(metric_item.period, null)
         stat        = try(metric_item.stat, "")
         unit        = try(metric_item.unit, null)
-        dimensions  = { for dK, dV in try(metric_item.metric.dimensions, []) : dK => dV }
+        dimensions  = try(metric_item.dimensions, {})
+        #{ for dK, dV in try(metric_item.metric.dimensions, []) : dK => dV }
       }
     ] : []
 
